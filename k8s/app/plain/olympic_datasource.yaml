@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: datasource-app
+  labels:
+    app: datasource-app
+    version: v1
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: datasource-app
+      version: v1
+  template:
+    metadata:
+      labels:
+        app: datasource-app
+        version: v1
+    spec:
+      containers:
+      - name: datasource-app
+        image: nrt.ocir.io/orasejapan/codeatcustomer/datasource-app
+        ports:
+        - containerPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: datasource-app
+spec:
+  type: ClusterIP
+  ports:
+  - name: http
+    port: 8080
+    targetPort: 8080
+  selector:
+    app: datasource-app

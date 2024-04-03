@@ -1,2 +1,2 @@
-# code-at-customer-handson-otelVer
-code-at-customer-handson-otelVer
+# code-customer_handson
+code@customer用ハンズオンコンテンツ
