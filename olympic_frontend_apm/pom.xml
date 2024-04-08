@@ -22,7 +22,7 @@
     <parent>
         <groupId>io.helidon.applications</groupId>
         <artifactId>helidon-mp</artifactId>
-        <version>4.0.6</version>
+        <version>3.2.7</version>
         <relativePath />
     </parent>
     <groupId>com.example.handson.okeadvanced.frontend</groupId>
@@ -39,6 +39,7 @@
             <groupId>io.smallrye</groupId>
             <artifactId>jandex</artifactId>
             <scope>runtime</scope>
+            <version>3.0.4</version>
         </dependency>
         <dependency>
             <groupId>io.helidon.logging</groupId>

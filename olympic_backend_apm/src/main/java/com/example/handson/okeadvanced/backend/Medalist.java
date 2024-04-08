@@ -12,11 +12,9 @@ import jakarta.ws.rs.core.Context;
 import jakarta.ws.rs.core.HttpHeaders;
 import jakarta.ws.rs.core.MediaType;
 import org.eclipse.microprofile.config.ConfigProvider;
-import org.slf4j.MDC;
 
 @Path("/medalist")
 public class Medalist {
-    
 
     // 環境変数からバージョン情報を取得(DockerfileのENVで設定済み)
     private static final String SERVICE_VERSION = System.getenv("SERVICE_VERSION") == null ? "V1"
@@ -44,10 +42,6 @@ public class Medalist {
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public String getMedalist(@Context HttpHeaders headers) {
-
-
-        MDC.put("span_id", headers.getHeaderString(X_B3_TRACEID));
-        MDC.put("trace_id", headers.getHeaderString(X_B3_SPANID));
 
         logger.log(Level.INFO, "invoke frontend method: %s",
                 Thread.currentThread().getStackTrace()[1].getMethodName());

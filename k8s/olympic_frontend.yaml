@@ -1,0 +1,68 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frontend-app
+  labels:
+    app: frontend-app
+    version: v1
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: frontend-app
+      version: v1
+  template:
+    metadata:
+      labels:
+        app: frontend-app
+        version: v1
+    spec:
+      containers:
+      - name: frontend-app
+        image: nrt.ocir.io/orasejapan/otel-demo-app-frontend:env
+        ports:
+        - containerPort: 8082
+        env:
+        - name: OTEL_SERVICE_NAME
+          value: otel-helidon-frontend
+        - name: OTEL_TRACES_EXPORTER
+          value: otlp
+        - name: OTEL_METRICS_EXPORTER
+          value: otlp
+        - name: OTEL_EXPORTER_OTLP_TRACES_PROTOCOL
+          value: http/protobuf
+        - name: OTEL_EXPORTER_OTLP_METRICS_PROTOCOL
+          value: http/protobuf
+        - name: OTEL_EXPORTER_OTLP_TRACES_ENDPOINT
+          valueFrom:
+            secretKeyRef:
+              name: apm-secret
+              key: traces-endpoint
+        - name: OTEL_EXPORTER_OTLP_METRICS_ENDPOINT
+          valueFrom:
+            secretKeyRef:
+              name: apm-secret
+              key: metrics-endpoint
+        - name: OTEL_EXPORTER_OTLP_HEADERS
+          valueFrom:
+            secretKeyRef:
+              name: apm-secret
+              key: private-key-header
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: frontend-app
+  annotations:
+    oci.oraclecloud.com/load-balancer-type: "lb"
+    service.beta.kubernetes.io/oci-load-balancer-shape: "flexible"
+    service.beta.kubernetes.io/oci-load-balancer-shape-flex-min: "10"
+    service.beta.kubernetes.io/oci-load-balancer-shape-flex-max: "30"
+spec:
+  type: LoadBalancer
+  ports:
+  - port: 80
+    targetPort: 8082
+    protocol: TCP
+  selector:
+    app: frontend-app

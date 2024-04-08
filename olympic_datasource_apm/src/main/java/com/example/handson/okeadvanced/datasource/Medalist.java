@@ -1,8 +1,6 @@
 
 package com.example.handson.okeadvanced.datasource;
 
-import java.util.List;
-
 import jakarta.json.bind.annotation.JsonbTransient;
 import jakarta.persistence.Access;
 import jakarta.persistence.AccessType;

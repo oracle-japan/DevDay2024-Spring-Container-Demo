@@ -13,7 +13,6 @@ import jakarta.ws.rs.core.Context;
 import jakarta.ws.rs.core.HttpHeaders;
 import jakarta.ws.rs.core.MediaType;
 import org.eclipse.microprofile.config.ConfigProvider;
-import org.slf4j.MDC;
 
 @Path("/medalist")
 @RequestScoped
@@ -44,9 +43,6 @@ public class MedalistResource {
         @GET
         @Produces(MediaType.APPLICATION_JSON)
         public String getMedalist(@Context HttpHeaders headers) {
-
-                MDC.put("span_id", headers.getHeaderString(X_B3_TRACEID));
-                MDC.put("trace_id", headers.getHeaderString(X_B3_SPANID));
 
                 logger.log(Level.INFO, "invoke frontend method: %s",
                                 Thread.currentThread().getStackTrace()[1].getMethodName());
