@@ -6,7 +6,7 @@ metadata:
     app: frontend-app
     version: v1
 spec:
-  replicas: 1
+  replicas: 2
   selector:
     matchLabels:
       app: frontend-app
@@ -19,7 +19,7 @@ spec:
     spec:
       containers:
       - name: frontend-app
-        image: nrt.ocir.io/orasejapan/otel-demo-app-frontend:env
+        image: nrt.ocir.io/orasejapan/otel-demo-app-frontend
         ports:
         - containerPort: 8082
         env:

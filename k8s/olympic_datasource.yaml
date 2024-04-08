@@ -19,7 +19,7 @@ spec:
     spec:
       containers:
       - name: datasource-app
-        image: nrt.ocir.io/orasejapan/otel-demo-app-datasource:env
+        image: nrt.ocir.io/orasejapan/otel-demo-app-datasource
         ports:
         - containerPort: 8080
         env:

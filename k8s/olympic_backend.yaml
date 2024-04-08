@@ -19,7 +19,7 @@ spec:
     spec:
       containers:
       - name: backend-app
-        image: nrt.ocir.io/orasejapan/otel-demo-app-backend:env
+        image: nrt.ocir.io/orasejapan/otel-demo-app-backend
         ports:
         - containerPort: 8081
         env:
@@ -72,7 +72,7 @@ spec:
     spec:
       containers:
       - name: backend-app
-        image: nrt.ocir.io/orasejapan/otel-demo-app-backend:env
+        image: nrt.ocir.io/orasejapan/otel-demo-app-backend
         ports:
         - containerPort: 8081
         env:
@@ -125,7 +125,7 @@ spec:
     spec:
       containers:
       - name: backend-app
-        image: nrt.ocir.io/orasejapan/otel-demo-app-backend:env
+        image: nrt.ocir.io/orasejapan/otel-demo-app-backend
         ports:
         - containerPort: 8081
         env:

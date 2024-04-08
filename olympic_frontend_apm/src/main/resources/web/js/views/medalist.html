@@ -4,30 +4,24 @@
  as shown at https://oss.oracle.com/licenses/upl/
  -->
 <div class="oj-hybrid-padding">
-    <div id="sampleDemo" style="" class="demo-padding demo-container">
-        <div id="componentDemoContent" style="width: 1px; min-width: 100%;">
-        <h1>東京2020オリンピック・パラリンピック競技大会メダリスト一覧</h1>
-            <oj-table id='table' aria-label='Items Table'
-                      data='[[dataprovider]]'
-                      selection-mode='{"row": "multiple", "column": "multiple"}'
-                      dnd='{"reorder": {"columns": "enabled"}}'
-                      scroll-policy='loadMoreOnScroll'
-                      scroll-policy-options='{"fetchSize": 10}'
-                      columns='[
-                                {"headerText": "項番",
-                                    "field": "id",
-                                    "resizable": "enabled"},
-                                {"headerText": "選手名",
-                                    "field": "name",
-                                    "headerClassName": "oj-sm-only-hide",
-                                    "className": "oj-sm-only-hide",
-                                    "resizable": "enabled"},
-                                {"headerText": "メダルの色",
-                                    "field": "color",
-                                    "resizable": "enabled"}
-                                ]'
-                      style='width: 100%; height: 100%;'>
-            </oj-table>
-        </div>
+  <div id="sampleDemo" style="" class="demo-padding demo-container">
+    <div id="componentDemoContent" style="width: 1px; min-width: 100%;">
+      <h1>東京2020オリンピック・パラリンピック競技大会メダリスト一覧</h1>
+      <oj-table id='table' aria-label='Items Table' data='[[dataprovider]]'
+        selection-mode='{"row": "multiple", "column": "multiple"}' dnd='{"reorder": {"columns": "enabled"}}'
+        scroll-policy='loadMoreOnScroll' scroll-policy-options='{"fetchSize": 10}' columns='[
+                              {"headerText": "項番",
+                                  "field": "id",
+                                  "resizable": "enabled"},
+                              {"headerText": "選手名",
+                                  "field": "name",
+                                  "headerClassName": "oj-sm-only-hide",
+                                  "className": "oj-sm-only-hide",
+                                  "resizable": "enabled"},
+                              {"headerText": "メダルの色",
+                                  "field": "color",
+                                  "resizable": "enabled"}
+                              ]' style='width: 100%; height: 100%;' class="demo-table-container"></oj-table>
     </div>
+  </div>
 </div>

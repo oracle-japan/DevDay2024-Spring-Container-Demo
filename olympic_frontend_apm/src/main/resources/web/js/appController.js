@@ -1,6 +1,6 @@
 /**
  * @license
- * Copyright (c) 2014, 2021, Oracle and/or its affiliates.
+ * Copyright (c) 2014, 2024, Oracle and/or its affiliates.
  * Licensed under The Universal Permissive License (UPL), Version 1.0
  * as shown at https://oss.oracle.com/licenses/upl/
  * @ignore
@@ -9,8 +9,8 @@
  * Your application specific code will go here
  */
 define(['knockout', 'ojs/ojcontext', 'ojs/ojmodule-element-utils', 'ojs/ojknockouttemplateutils', 'ojs/ojcorerouter', 'ojs/ojmodulerouter-adapter', 'ojs/ojknockoutrouteradapter', 'ojs/ojurlparamadapter', 'ojs/ojresponsiveutils', 'ojs/ojresponsiveknockoututils', 'ojs/ojarraydataprovider',
-  'ojs/ojoffcanvas', 'ojs/ojmodule-element', 'ojs/ojknockout'],
-  function (ko, Context, moduleUtils, KnockoutTemplateUtils, CoreRouter, ModuleRouterAdapter, KnockoutRouterAdapter, UrlParamAdapter, ResponsiveUtils, ResponsiveKnockoutUtils, ArrayDataProvider, OffcanvasUtils) {
+  'ojs/ojdrawerpopup', 'ojs/ojmodule-element', 'ojs/ojknockout'],
+  function (ko, Context, moduleUtils, KnockoutTemplateUtils, CoreRouter, ModuleRouterAdapter, KnockoutRouterAdapter, UrlParamAdapter, ResponsiveUtils, ResponsiveKnockoutUtils, ArrayDataProvider) {
 
     function ControllerViewModel() {
 
@@ -27,7 +27,7 @@ define(['knockout', 'ojs/ojcontext', 'ojs/ojmodule-element-utils', 'ojs/ojknocko
       document.getElementById('globalBody').addEventListener('announce', announcementHandler, false);
 
 
-      // Media queries for repsonsive layouts
+      // Media queries for responsive layouts
       const smQuery = ResponsiveUtils.getFrameworkQuery(ResponsiveUtils.FRAMEWORK_QUERY_KEY.SM_ONLY);
       this.smScreen = ResponsiveKnockoutUtils.createMediaQueryObservable(smQuery);
       const mdQuery = ResponsiveUtils.getFrameworkQuery(ResponsiveUtils.FRAMEWORK_QUERY_KEY.MD_UP);
@@ -35,7 +35,7 @@ define(['knockout', 'ojs/ojcontext', 'ojs/ojmodule-element-utils', 'ojs/ojknocko
 
       let navData = [
         { path: '', redirect: 'medalist' },
-        { path: 'medalist', detail: { label: 'medalist', iconClass: 'oj-navigationlist-item-icon demo-icon-font-24 demo-fire-icon-24' } },
+        { path: 'medalist', detail: { label: 'medalist', iconClass: 'oj-ux-ico-medal-alt' } },
       ];
 
       // Router setup
@@ -53,24 +53,21 @@ define(['knockout', 'ojs/ojcontext', 'ojs/ojmodule-element-utils', 'ojs/ojknocko
       this.navDataProvider = new ArrayDataProvider(navData.slice(1), { keyAttributes: "path" });
 
       // Drawer
-      // Close offcanvas on medium and larger screens
-      this.mdScreen.subscribe(() => { OffcanvasUtils.close(this.drawerParams); });
-      this.drawerParams = {
-        displayMode: 'push',
-        selector: '#navDrawer',
-        content: '#pageContent'
-      };
+      self.sideDrawerOn = ko.observable(false);
+
+      // Close drawer on medium and larger screens
+      this.mdScreen.subscribe(() => { self.sideDrawerOn(false) });
+
       // Called by navigation drawer toggle button and after selection of nav drawer item
       this.toggleDrawer = () => {
-        this.navDrawerOn = true;
-        return OffcanvasUtils.toggle(this.drawerParams);
+        self.sideDrawerOn(!self.sideDrawerOn());
       }
 
       // Header
       // Application Name used in Branding Area
-      this.appName = ko.observable("OKE Advanced Handson Workshop");
+      this.appName = ko.observable("Oracle Developer Days 2024 Spring Demo");
       // User Info used in Global Navigation area
-      this.userLogin = ko.observable("oracle@oracle.com");
+      this.userLogin = ko.observable("oracle-developer@oracle.com");
 
       // Footer
       this.footerLinks = [

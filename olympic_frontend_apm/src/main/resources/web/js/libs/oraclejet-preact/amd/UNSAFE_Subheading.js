@@ -1,0 +1,2 @@
+define(['exports', './Subheading-9294528b', 'preact/jsx-runtime', './UNSAFE_Subheading/themes/SubheadingStyles.css', 'css!./SubheadingStyles.styles.css', './vanilla-extract-recipes-createRuntimeFn.esm-5dce05de'], (function(e,s,i,n,t,a){"use strict";e.Subheading=s.Subheading,e.sizeOptions=s.sizeOptions,e.subheadingElementTypes=s.subheadingElementTypes,Object.defineProperty(e,"__esModule",{value:!0})}));
+//# sourceMappingURL=UNSAFE_Subheading.js.map

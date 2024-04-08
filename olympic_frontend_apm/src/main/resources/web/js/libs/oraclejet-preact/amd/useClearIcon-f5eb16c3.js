@@ -1,0 +1,2 @@
+define(['exports', 'preact/hooks', './useToggle-bb6b1322'], (function(e,s,l){"use strict";e.useClearIcon=function({clearIcon:e,display:o,hasValue:a,isEnabled:n=!0,isFocused:u=!1,isHover:c=!1}){const t=s.useCallback((()=>n&&("always"===o||"conditionally"===o&&a&&(u||c))),[o,a,n,u,c]),{bool:i,setFalse:r,setTrue:b}=l.useToggle(t());return s.useEffect((()=>{t()?b():r()}),[t,b,r]),i?e:null}}));
+//# sourceMappingURL=useClearIcon-f5eb16c3.js.map

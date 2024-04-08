@@ -1,0 +1,2 @@
+define(['exports', './Text-fb81a941', 'preact/jsx-runtime', './classNames-62eaa01c', './mergeInterpolations-73b24f1a', './_curry3-bdba4a6e', './_curry1-cb27040e', './_curry2-5a2b49e1', './_isObject-2ffb2ca1', './UNSAFE_Text/themes/TextStyles.css', 'css!./TextStyles.styles.css', './vanilla-extract-recipes-createRuntimeFn.esm-5dce05de'], (function(e,t,s,c,a,r,i,n,b,l,u,x){"use strict";e.Text=t.Text,Object.defineProperty(e,"__esModule",{value:!0})}));
+//# sourceMappingURL=UNSAFE_Text.js.map

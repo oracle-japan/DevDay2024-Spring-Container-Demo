@@ -1,0 +1,2 @@
+define(['exports', './useColorScheme-5ae81aad', './useScale-00e3ccb5', './theme-9fc8c760', './mergeInterpolations-73b24f1a', './TopLayerHost-ed31c70d'], (function(e,o,t,c,s,n){"use strict";e.useThemeInterpolations=function(){const e=o.useColorScheme(),a=t.useScale(),r=a!==n.DefaultEnvironment.scale?a:void 0,l=s.mergeInterpolations([...Object.values(c.themeInterpolations)]),{class:u}=l({colorScheme:e,scale:r});return u}}));
+//# sourceMappingURL=useThemeInterpolations-b8a02c6d.js.map

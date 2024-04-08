@@ -1,0 +1,2 @@
+define(['exports', './TopLayerHost-ed31c70d', './EnvironmentProvider-f56c5ac9', 'preact', './Common/themes/redwood/theme', './Common/themes/themeContract.css', 'preact/jsx-runtime', 'preact/compat', 'preact/hooks', './LayerManager-71d52c72'], (function(e,o,n,t,r,i,m,c,d,v){"use strict";e.EnvironmentContext=o.EnvironmentContext,e.EnvironmentProvider=n.EnvironmentProvider,e.RootEnvironmentProvider=n.RootEnvironmentProvider,Object.defineProperty(e,"__esModule",{value:!0})}));
+//# sourceMappingURL=UNSAFE_Environment.js.map
