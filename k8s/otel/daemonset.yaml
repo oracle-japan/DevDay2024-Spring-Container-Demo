@@ -1,0 +1,20 @@
+mode: daemonset
+  
+presets:
+  # enables the k8sattributesprocessor and adds it to the traces, metrics, and logs pipelines
+  kubernetesAttributes:
+    enabled: true
+  # enables the kubeletstatsreceiver and adds it to the metrics pipelines
+  kubeletMetrics:
+    enabled: true
+
+config:
+  exporters:
+    otlphttp:
+      endpoint: "<APMエンドポイント>/20200101/opentelemetry"
+      headers:
+        Authorization: "dataKey <プライベートデータキー>"
+  service:
+    pipelines:
+      metrics:
+        exporters: [ otlphttp ]
