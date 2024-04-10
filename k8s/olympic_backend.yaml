@@ -27,6 +27,8 @@ spec:
           value: otel-helidon-backend-v1
         - name: SERVICE_VERSION
           value: V1
+        - name: OTEL_LOGS_EXPORTER
+          value: none
         - name: OTEL_TRACES_EXPORTER
           value: otlp
         - name: OTEL_METRICS_EXPORTER
@@ -80,6 +82,8 @@ spec:
           value: otel-helidon-backend-v2
         - name: SERVICE_VERSION
           value: V2
+        - name: OTEL_LOGS_EXPORTER
+          value: none
         - name: OTEL_TRACES_EXPORTER
           value: otlp
         - name: OTEL_METRICS_EXPORTER
@@ -131,6 +135,8 @@ spec:
         env:
         - name: OTEL_SERVICE_NAME
           value: otel-helidon-backend-v3
+        - name: OTEL_LOGS_EXPORTER
+          value: none
         - name: SERVICE_VERSION
           value: V3
         - name: OTEL_TRACES_EXPORTER

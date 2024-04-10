@@ -25,6 +25,8 @@ spec:
         env:
         - name: OTEL_SERVICE_NAME
           value: otel-helidon-frontend
+        - name: OTEL_LOGS_EXPORTER
+          value: none
         - name: OTEL_TRACES_EXPORTER
           value: otlp
         - name: OTEL_METRICS_EXPORTER
