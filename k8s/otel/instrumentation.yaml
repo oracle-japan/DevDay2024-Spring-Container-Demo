@@ -24,8 +24,6 @@ spec:
         value: http/protobuf
       - name: OTEL_EXPORTER_OTLP_LOGS_PROTOCOL
         value: http/protobuf
-      - name: OTEL_METRICS_EXEMPLAR_FILTER
-        value: always_on
       - name: OTEL_EXPORTER_OTLP_TRACES_ENDPOINT
         valueFrom:
           secretKeyRef:

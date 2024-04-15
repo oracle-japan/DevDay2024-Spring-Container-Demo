@@ -18,5 +18,3 @@ config:
     pipelines:
       metrics:
         exporters: [otlphttp]
-      traces:
-        exporters: [otlphttp]
