@@ -3,6 +3,8 @@ kind: Instrumentation
 metadata:
   name: instrumentation
 spec:
+  exporter:
+    endpoint: http://otel-collector-opentelemetry-collector:4317
   propagators:
     - tracecontext
     - baggage
@@ -18,24 +20,24 @@ spec:
         value: otlp
       - name: OTEL_LOGS_EXPORTER
         value: none
-      - name: OTEL_EXPORTER_OTLP_TRACES_PROTOCOL
-        value: http/protobuf
-      - name: OTEL_EXPORTER_OTLP_METRICS_PROTOCOL
-        value: http/protobuf
-      - name: OTEL_EXPORTER_OTLP_LOGS_PROTOCOL
-        value: http/protobuf
-      - name: OTEL_EXPORTER_OTLP_TRACES_ENDPOINT
-        valueFrom:
-          secretKeyRef:
-            name: apm-secret
-            key: traces-endpoint
-      - name: OTEL_EXPORTER_OTLP_HEADERS
-        valueFrom:
-          secretKeyRef:
-            name: apm-secret
-            key: private-key-header
-      - name: OTEL_EXPORTER_OTLP_METRICS_ENDPOINT
-        valueFrom:
-          secretKeyRef:
-            key: metrics-endpoint
-            name: apm-secret
+      # - name: OTEL_EXPORTER_OTLP_TRACES_PROTOCOL
+      #   value: http/protobuf
+      # - name: OTEL_EXPORTER_OTLP_METRICS_PROTOCOL
+      #   value: http/protobuf
+      # - name: OTEL_EXPORTER_OTLP_LOGS_PROTOCOL
+      #   value: http/protobuf
+      # - name: OTEL_EXPORTER_OTLP_TRACES_ENDPOINT
+      #   valueFrom:
+      #     secretKeyRef:
+      #       name: apm-secret
+      #       key: traces-endpoint
+      # - name: OTEL_EXPORTER_OTLP_HEADERS
+      #   valueFrom:
+      #     secretKeyRef:
+      #       name: apm-secret
+      #       key: private-key-header
+      # - name: OTEL_EXPORTER_OTLP_METRICS_ENDPOINT
+      #   valueFrom:
+      #     secretKeyRef:
+      #       key: metrics-endpoint
+      #       name: apm-secret
