@@ -16,42 +16,19 @@ spec:
       labels:
         app: backend-app
         version: v1
+      annotations:
+        instrumentation.opentelemetry.io/inject-java: "true"
     spec:
       containers:
-      - name: backend-app
-        image: nrt.ocir.io/orasejapan/otel-demo-app-backend
-        ports:
-        - containerPort: 8081
-        env:
-        - name: OTEL_SERVICE_NAME
-          value: otel-helidon-backend-v1
-        - name: SERVICE_VERSION
-          value: V1
-        - name: OTEL_LOGS_EXPORTER
-          value: none
-        - name: OTEL_TRACES_EXPORTER
-          value: otlp
-        - name: OTEL_METRICS_EXPORTER
-          value: otlp
-        - name: OTEL_EXPORTER_OTLP_TRACES_PROTOCOL
-          value: http/protobuf
-        - name: OTEL_EXPORTER_OTLP_METRICS_PROTOCOL
-          value: http/protobuf
-        - name: OTEL_EXPORTER_OTLP_TRACES_ENDPOINT
-          valueFrom:
-            secretKeyRef:
-              name: apm-secret
-              key: traces-endpoint
-        - name: OTEL_EXPORTER_OTLP_METRICS_ENDPOINT
-          valueFrom:
-            secretKeyRef:
-              name: apm-secret
-              key: metrics-endpoint
-        - name: OTEL_EXPORTER_OTLP_HEADERS
-          valueFrom:
-            secretKeyRef:
-              name: apm-secret
-              key: private-key-header
+        - name: backend-app
+          image: nrt.ocir.io/orasejapan/otel-demo-app-backend:operator
+          ports:
+            - containerPort: 8081
+          env:
+            - name: OTEL_SERVICE_NAME
+              value: otel-helidon-backend-v1
+            - name: SERVICE_VERSION
+              value: V1
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -71,42 +48,19 @@ spec:
       labels:
         app: backend-app
         version: v2
+      annotations:
+        instrumentation.opentelemetry.io/inject-java: "true"
     spec:
       containers:
-      - name: backend-app
-        image: nrt.ocir.io/orasejapan/otel-demo-app-backend
-        ports:
-        - containerPort: 8081
-        env:
-        - name: OTEL_SERVICE_NAME
-          value: otel-helidon-backend-v2
-        - name: SERVICE_VERSION
-          value: V2
-        - name: OTEL_LOGS_EXPORTER
-          value: none
-        - name: OTEL_TRACES_EXPORTER
-          value: otlp
-        - name: OTEL_METRICS_EXPORTER
-          value: otlp
-        - name: OTEL_EXPORTER_OTLP_TRACES_PROTOCOL
-          value: http/protobuf
-        - name: OTEL_EXPORTER_OTLP_METRICS_PROTOCOL
-          value: http/protobuf
-        - name: OTEL_EXPORTER_OTLP_TRACES_ENDPOINT
-          valueFrom:
-            secretKeyRef:
-              name: apm-secret
-              key: traces-endpoint
-        - name: OTEL_EXPORTER_OTLP_METRICS_ENDPOINT
-          valueFrom:
-            secretKeyRef:
-              name: apm-secret
-              key: metrics-endpoint
-        - name: OTEL_EXPORTER_OTLP_HEADERS
-          valueFrom:
-            secretKeyRef:
-              name: apm-secret
-              key: private-key-header
+        - name: backend-app
+          image: nrt.ocir.io/orasejapan/otel-demo-app-backend:operator
+          ports:
+            - containerPort: 8081
+          env:
+            - name: OTEL_SERVICE_NAME
+              value: otel-helidon-backend-v2
+            - name: SERVICE_VERSION
+              value: V2
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -126,52 +80,29 @@ spec:
       labels:
         app: backend-app
         version: v3
+      annotations:
+        instrumentation.opentelemetry.io/inject-java: "true"
     spec:
       containers:
-      - name: backend-app
-        image: nrt.ocir.io/orasejapan/otel-demo-app-backend
-        ports:
-        - containerPort: 8081
-        env:
-        - name: OTEL_SERVICE_NAME
-          value: otel-helidon-backend-v3
-        - name: OTEL_LOGS_EXPORTER
-          value: none
-        - name: SERVICE_VERSION
-          value: V3
-        - name: OTEL_TRACES_EXPORTER
-          value: otlp
-        - name: OTEL_METRICS_EXPORTER
-          value: otlp
-        - name: OTEL_EXPORTER_OTLP_TRACES_PROTOCOL
-          value: http/protobuf
-        - name: OTEL_EXPORTER_OTLP_METRICS_PROTOCOL
-          value: http/protobuf
-        - name: OTEL_EXPORTER_OTLP_TRACES_ENDPOINT
-          valueFrom:
-            secretKeyRef:
-              name: apm-secret
-              key: traces-endpoint
-        - name: OTEL_EXPORTER_OTLP_METRICS_ENDPOINT
-          valueFrom:
-            secretKeyRef:
-              name: apm-secret
-              key: metrics-endpoint
-        - name: OTEL_EXPORTER_OTLP_HEADERS
-          valueFrom:
-            secretKeyRef:
-              name: apm-secret
-              key: private-key-header
+        - name: backend-app
+          image: nrt.ocir.io/orasejapan/otel-demo-app-backend:operator
+          ports:
+            - containerPort: 8081
+          env:
+            - name: OTEL_SERVICE_NAME
+              value: otel-helidon-backend-v3
+            - name: SERVICE_VERSION
+              value: V3
 ---
 apiVersion: v1
 kind: Service
 metadata:
   name: backend-app
 spec:
-  type: ClusterIP 
+  type: ClusterIP
   ports:
-  - name: http
-    port: 8081
-    targetPort: 8081
+    - name: http
+      port: 8081
+      targetPort: 8081
   selector:
     app: backend-app

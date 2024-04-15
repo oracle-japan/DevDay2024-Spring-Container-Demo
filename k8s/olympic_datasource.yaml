@@ -16,40 +16,17 @@ spec:
       labels:
         app: datasource-app
         version: v1
+      annotations:
+        instrumentation.opentelemetry.io/inject-java: "true"
     spec:
       containers:
-      - name: datasource-app
-        image: nrt.ocir.io/orasejapan/otel-demo-app-datasource
-        ports:
-        - containerPort: 8080
-        env:
-        - name: OTEL_SERVICE_NAME
-          value: otel-helidon-datasource
-        - name: OTEL_LOGS_EXPORTER
-          value: none
-        - name: OTEL_TRACES_EXPORTER
-          value: otlp
-        - name: OTEL_METRICS_EXPORTER
-          value: otlp
-        - name: OTEL_EXPORTER_OTLP_TRACES_PROTOCOL
-          value: http/protobuf
-        - name: OTEL_EXPORTER_OTLP_METRICS_PROTOCOL
-          value: http/protobuf
-        - name: OTEL_EXPORTER_OTLP_TRACES_ENDPOINT
-          valueFrom:
-            secretKeyRef:
-              name: apm-secret
-              key: traces-endpoint
-        - name: OTEL_EXPORTER_OTLP_METRICS_ENDPOINT
-          valueFrom:
-            secretKeyRef:
-              name: apm-secret
-              key: metrics-endpoint
-        - name: OTEL_EXPORTER_OTLP_HEADERS
-          valueFrom:
-            secretKeyRef:
-              name: apm-secret
-              key: private-key-header
+        - name: datasource-app
+          image: nrt.ocir.io/orasejapan/otel-demo-app-datasource:operator
+          ports:
+            - containerPort: 8080
+          env:
+            - name: OTEL_SERVICE_NAME
+              value: otel-helidon-datasource
 ---
 apiVersion: v1
 kind: Service
@@ -58,8 +35,8 @@ metadata:
 spec:
   type: ClusterIP
   ports:
-  - name: http
-    port: 8080
-    targetPort: 8080
+    - name: http
+      port: 8080
+      targetPort: 8080
   selector:
     app: datasource-app

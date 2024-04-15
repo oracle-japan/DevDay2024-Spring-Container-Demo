@@ -16,40 +16,17 @@ spec:
       labels:
         app: frontend-app
         version: v1
+      annotations:
+        instrumentation.opentelemetry.io/inject-java: "true"
     spec:
       containers:
-      - name: frontend-app
-        image: nrt.ocir.io/orasejapan/otel-demo-app-frontend
-        ports:
-        - containerPort: 8082
-        env:
-        - name: OTEL_SERVICE_NAME
-          value: otel-helidon-frontend
-        - name: OTEL_LOGS_EXPORTER
-          value: none
-        - name: OTEL_TRACES_EXPORTER
-          value: otlp
-        - name: OTEL_METRICS_EXPORTER
-          value: otlp
-        - name: OTEL_EXPORTER_OTLP_TRACES_PROTOCOL
-          value: http/protobuf
-        - name: OTEL_EXPORTER_OTLP_METRICS_PROTOCOL
-          value: http/protobuf
-        - name: OTEL_EXPORTER_OTLP_TRACES_ENDPOINT
-          valueFrom:
-            secretKeyRef:
-              name: apm-secret
-              key: traces-endpoint
-        - name: OTEL_EXPORTER_OTLP_METRICS_ENDPOINT
-          valueFrom:
-            secretKeyRef:
-              name: apm-secret
-              key: metrics-endpoint
-        - name: OTEL_EXPORTER_OTLP_HEADERS
-          valueFrom:
-            secretKeyRef:
-              name: apm-secret
-              key: private-key-header
+        - name: frontend-app
+          image: nrt.ocir.io/orasejapan/otel-demo-app-frontend:operator
+          ports:
+            - containerPort: 8082
+          env:
+            - name: OTEL_SERVICE_NAME
+              value: otel-helidon-frontend
 ---
 apiVersion: v1
 kind: Service
@@ -63,8 +40,8 @@ metadata:
 spec:
   type: LoadBalancer
   ports:
-  - port: 80
-    targetPort: 8082
-    protocol: TCP
+    - port: 80
+      targetPort: 8082
+      protocol: TCP
   selector:
     app: frontend-app

@@ -1,5 +1,5 @@
 mode: daemonset
-  
+
 presets:
   # enables the k8sattributesprocessor and adds it to the traces, metrics, and logs pipelines
   kubernetesAttributes:
@@ -11,10 +11,12 @@ presets:
 config:
   exporters:
     otlphttp:
-      endpoint: "<APMエンドポイント>/20200101/opentelemetry"
+      endpoint: "https://aaaaddhwxvhc2aaaaaaaaacxwm.apm-agt.us-ashburn-1.oci.oraclecloud.com/20200101/opentelemetry"
       headers:
-        Authorization: "dataKey <プライベートデータキー>"
+        Authorization: "dataKey UTPWZYWS22NJWQYUCEJKSCXPNJJKKFJK"
   service:
     pipelines:
       metrics:
-        exporters: [ otlphttp ]
+        exporters: [otlphttp]
+      traces:
+        exporters: [otlphttp]
