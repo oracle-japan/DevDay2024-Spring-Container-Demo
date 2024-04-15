@@ -11,9 +11,9 @@ presets:
 config:
   exporters:
     otlphttp:
-      endpoint: "https://aaaaddhwxvhc2aaaaaaaaacxwm.apm-agt.us-ashburn-1.oci.oraclecloud.com/20200101/opentelemetry"
+      endpoint: "https://<APMエンドポイント>/20200101/opentelemetry"
       headers:
-        Authorization: "dataKey UTPWZYWS22NJWQYUCEJKSCXPNJJKKFJK"
+        Authorization: "dataKey <データキー>"
   service:
     pipelines:
       metrics:
