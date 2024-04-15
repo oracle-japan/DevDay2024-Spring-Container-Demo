@@ -5,6 +5,10 @@
 
 Oracle Container Engine for Kubernetes（以下、OKE）にデモアプリケーションをデプロイし、Oracle Cloud Intrastructure（以下、OCI）でのObservabilityツールであるApplication Performance Monitoring（以下、APM）とLogging Analyticsという2つのサービスを利用したOCIでのOpenTelemetryを実装するためのデモです。
 
+## サンプルアプリケーションのイメージ
+
+![image](img/image.png)
+
 ## ディレクトリ構成
 
 ```sh
